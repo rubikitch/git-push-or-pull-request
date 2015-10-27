@@ -17,9 +17,7 @@ if [ `git rev-parse --symbolic-full-name --abbrev-ref HEAD` = master ]; then
     echo This branch is master, so cannot send pull request.
     exit 1
 fi
-if git remote show | grep $user > /dev/null; then
-    echo already forked
-else
+if ! git remote show | grep $user > /dev/null; then
     hub fork
 fi
 git push $user `git rev-parse --symbolic-full-name --abbrev-ref HEAD `

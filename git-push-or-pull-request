@@ -1,0 +1,14 @@
+#!/bin/sh
+if git ls-remote --get-url | grep rubikitch > /dev/null; then
+    echo This is my repository.
+    git push origin master
+else
+    echo "This is other people's repository."
+    if [ `git rev-parse --symbolic-full-name --abbrev-ref HEAD` = master ]; then
+        echo This branch is master, so cannot send pull request.
+        exit 1
+    fi
+    hub fork
+    git push rubikitch `git rev-parse --symbolic-full-name --abbrev-ref HEAD `
+    hub pull-request
+fi

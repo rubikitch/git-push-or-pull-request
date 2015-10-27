@@ -1,5 +1,6 @@
 #!/bin/sh
-if git ls-remote --get-url | grep rubikitch > /dev/null; then
+user=`git config --global github.user`
+if git ls-remote --get-url | grep $user > /dev/null; then
     echo This is my repository.
     git push origin master
 else
@@ -9,6 +10,6 @@ else
         exit 1
     fi
     hub fork
-    git push rubikitch `git rev-parse --symbolic-full-name --abbrev-ref HEAD `
+    git push $user `git rev-parse --symbolic-full-name --abbrev-ref HEAD `
     hub pull-request
 fi

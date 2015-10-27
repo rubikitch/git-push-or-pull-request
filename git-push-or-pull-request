@@ -9,13 +9,14 @@ user=`git config --global github.user`
 if git ls-remote --get-url | grep $user > /dev/null; then
     echo This is my repository.
     git push origin master
-else
-    echo "This is other people's repository."
-    if [ `git rev-parse --symbolic-full-name --abbrev-ref HEAD` = master ]; then
-        echo This branch is master, so cannot send pull request.
-        exit 1
-    fi
-    hub fork
-    git push $user `git rev-parse --symbolic-full-name --abbrev-ref HEAD `
-    hub pull-request
+    exit 0
 fi
+
+echo "This is other people's repository."
+if [ `git rev-parse --symbolic-full-name --abbrev-ref HEAD` = master ]; then
+    echo This branch is master, so cannot send pull request.
+    exit 1
+fi
+hub fork
+git push $user `git rev-parse --symbolic-full-name --abbrev-ref HEAD `
+hub pull-request

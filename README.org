@@ -1,0 +1,22 @@
+* git-push or git-pull-request
+Issue `git push origin master' for my repository.
+Issue `git pull-request' for other people's repository.
+* Installation
+Pgrepper is single script, so you can install it easily.
+
+#+BEGIN_EXAMPLE
+$ wget -O ~/bin/git-push-or-pull-request https://raw.githubusercontent.com/rubikitch/git-push-or-pull-request/master/git-push-or-pull-request
+$ chmod +x ~/bin/git-push-or-pull-request
+#+END_EXAMPLE
+
+* From Emacs
+You can execute this script by `C-x v p' in Emacs.
+
+#+BEGIN_SRC emacs-lisp
+(defun vc-git-push-or-pull-request ()
+  (interactive)
+  (display-buffer (make-comint "git-push-or-pull-request" "git-push-or-pull-request"
+                               nil default-directory)))
+(global-set-key (kbd "C-x v p") 'git-push-or-pull-request)
+#+END_SRC
+

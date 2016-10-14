@@ -2,7 +2,7 @@
 Issue `git push origin master' for my repository.
 Issue `git pull-request' for other people's repository.
 * Installation
-Pgrepper is single script, so you can install it easily.
+git-push-or-pull-request is single script, so you can install it easily.
 
 #+BEGIN_EXAMPLE
 $ wget -O ~/bin/git-push-or-pull-request https://raw.githubusercontent.com/rubikitch/git-push-or-pull-request/master/git-push-or-pull-request
